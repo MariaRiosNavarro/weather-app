@@ -2,12 +2,13 @@ import "./Form.css";
 
 export default function Form({ onAddActivity }) {
   //form data
-
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const dataJSON = Object.fromEntries(formData);
+    //the Prop is submitted with the data of the form.
     onAddActivity(dataJSON);
+
     // console.log(dataJSON.name);
     // console.log(dataJSON.isForGoodWeather);
 
@@ -17,8 +18,9 @@ export default function Form({ onAddActivity }) {
       isForGoodWeather: dataJSON.isForGoodWeather === "on" ? true : false,
     };
 
-    //reset and focus:
+    console.log(dataChecked);
 
+    //reset and focus:
     event.target.reset();
     event.target.name.focus();
   }
