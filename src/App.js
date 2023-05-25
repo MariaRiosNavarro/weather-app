@@ -1,18 +1,26 @@
 import "./App.css";
 import Form from "./components/Form/Form.js";
-import { useState } from "react";
+import List from "./components/List/List.js";
+import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
 
 function App() {
-  const [activityState, setActivityState] = useState("");
+  const [activities, setActivities] = useLocalStorageState("activities", {
+    defaultValue: [],
+  });
 
-  function handleAddActivity(newActivity) {
-    setActivityState([{ id: uid(), ...newActivity }, ...activityState]);
+  function handleAddActivity(newData) {
+    setActivities([...activities, { ...newData, id: uid() }]);
   }
 
   // onAddActivity is a Prop of Form and we give the function as value.
 
-  return <Form onAddActivity={handleAddActivity} />;
+  return (
+    <>
+      <List activities={activities} />
+      <Form onAddActivity={handleAddActivity} />
+    </>
+  );
 }
 
 export default App;
