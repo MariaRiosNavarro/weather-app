@@ -1,9 +1,7 @@
 import "./Form.css";
 
-export default function Form(onAddActivity) {
-
-
-//form data
+export default function Form({ onAddActivity }) {
+  //form data
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -12,13 +10,18 @@ export default function Form(onAddActivity) {
     onAddActivity(dataJSON);
     // console.log(dataJSON.name);
     // console.log(dataJSON.isForGoodWeather);
-    
+
+    //We need a Boolean Value for the checkBox to separate the list later
+    const dataChecked = {
+      ...dataJSON,
+      isForGoodWeather: dataJSON.isForGoodWeather === "on" ? true : false,
+    };
+
+    //reset and focus:
+
     event.target.reset();
     event.target.name.focus();
   }
-
- //DONFORGET- Hint: To get the boolean value of a checkbox, use .checked.
-
 
   return (
     <form className="flex-column" onSubmit={handleSubmit}>
