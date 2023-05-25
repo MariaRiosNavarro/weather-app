@@ -1,14 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Form from "./components/Form/Form.js";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-
-      </header>
-    </div>
-  );
+  return <Form />;
 }
 
 export default App;
